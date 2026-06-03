@@ -1,0 +1,23 @@
+# Lighter Faster R-CNN variant: MobileNet-v3-Large + FPN.
+# Use this if the R50 v2 config OOMs on your 1650 Ti -- comfortably fits at batch=4.
+# Accuracy is ~3-5 mAP points below R50 but trains 2x faster.
+
+name: fasterrcnn_mobilenet_uicvd_unified3
+model: fasterrcnn_mobilenet
+dataset: uicvd
+taxonomy: unified3
+
+epochs: 40
+batch: 4
+imgsz: 640
+lr0: 0.0001
+seed: 42
+device: "0"
+workers: 2
+amp: false                # see notes in fasterrcnn_r50_v2_uicvd_unified3.yaml
+extra:
+  min_size: 480
+  max_size: 800
+  accumulate: 4           # effective batch = 4 * 4 = 16
+  warmup_iters: 200
+  weight_decay: 0.0005

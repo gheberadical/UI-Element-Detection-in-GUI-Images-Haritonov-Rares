@@ -1,0 +1,19 @@
+name: yolov8n_gengui_unified_ext
+model: yolov8n
+dataset: gengui
+taxonomy: unified_ext
+
+epochs: 200
+batch: 8           # 4 GB VRAM: GenGUI is dense; batch=16 OOMs
+imgsz: 640
+lr0: 0.01
+seed: 42
+device: "0"
+workers: 2
+amp: true
+extra:
+  patience: 50
+  mosaic: 1.0
+  hsv_h: 0.0
+  hsv_s: 0.2
+  hsv_v: 0.3

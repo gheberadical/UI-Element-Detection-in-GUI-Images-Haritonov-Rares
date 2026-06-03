@@ -1,0 +1,19 @@
+# RT-DETR-L on GenGUI (3-class). Run on Kaggle (16 GB T4) -- see
+# notebooks/02_kaggle_train_rtdetr.ipynb.
+
+name: rtdetr_l_gengui_unified3
+model: rtdetr_l
+dataset: gengui
+taxonomy: unified3
+
+epochs: 100
+batch: 8
+imgsz: 640
+lr0: 0.0001
+seed: 42
+device: "0"
+workers: 4
+amp: true
+extra:
+  patience: 25
+  cos_lr: true

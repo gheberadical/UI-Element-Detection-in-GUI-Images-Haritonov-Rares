@@ -1,0 +1,39 @@
+# RF-DETR Medium on GenGUI's native 13-class taxonomy.
+#
+# RF-DETR (Roboflow, ICLR 2026) is a newer transformer detector than RT-DETR,
+# built on DINOv2. ~33M params (similar to RT-DETR-L), so won't fit on 4 GB
+# local; run on Kaggle T4 -- see notebooks/02_kaggle_train_rtdetr.ipynb.
+#
+# Before training, the prepared data must be re-arranged into RF-DETR's
+# expected layout:
+#     python scripts/to_rfdetr_layout.py --dataset gengui --taxonomy gengui13
+
+name: rfdetr_m_gengui_gengui13
+model: rfdetr_m
+dataset: gengui
+taxonomy: gengui13
+results_dir: results_v2
+
+epochs: 80                # transformer; converges in fewer epochs than YOLO
+batch: 2                  # T4 (14.5 GB effective) OOMs at batch=8 and at batch=4
+                          # because RF-DETR upscales to 736 internally for multi-scale.
+imgsz: 640                # informational only; RF-DETR uses its own resolution below
+lr0: 0.0001
+seed: 42
+device: "0"
+workers: 4
+amp: true
+extra:
+  grad_accum_steps: 16    # effective batch = 2 * 16 = 32
+  # RF-DETR Medium pretrained weights are at 576x576 (36 patches @ patch_size=16).
+  # Training at 640 causes a position-embedding tensor mismatch when loading
+  # pretrained weights. Stick with the native pretrained resolution.
+  resolution: 576
+  weight_decay: 0.0001
+  early_stopping: true
+  early_stopping_patience: 15
+  use_ema: true
+
+wandb_project: uidet-thesis
+wandb_entity: null
+wandb_tags: []

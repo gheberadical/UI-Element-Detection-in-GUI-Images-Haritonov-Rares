@@ -1,0 +1,69 @@
+# UICVD native classes (16) mapped to the unified ontologies.
+#
+# Native class counts (from data/raw inspection):
+#   Icon 5704, TextLabel 4298, MenuItem 1138, Row 813, Button 757,
+#   SubmenuItem 685, NavigationItem 424, DropdownItem 379, InputField 149,
+#   SectionTitle 145, WorkingArea 121, TitleBar 121, Menu 121,
+#   VerticalMenu 110, NavigationMenu 100, TableHeader 58
+#
+# Notes:
+#   - "Row", "WorkingArea", "TableHeader" are layout/structural — kept as Container
+#     in unified_ext, ignored in unified3 (none of the 3 head classes apply).
+#   - "DropdownItem" / "SubmenuItem" share semantics with MenuItem.
+#   - "VerticalMenu" / "NavigationMenu" are containers of nav/menu items -> Menu.
+
+unified3:
+  Icon:           Icon
+  TextLabel:      Text
+  SectionTitle:   Text
+  Button:         Button
+  MenuItem:       __ignore__       # MenuItem is not a top-3 class
+  SubmenuItem:    __ignore__
+  DropdownItem:   __ignore__
+  NavigationItem: __ignore__
+  InputField:     __ignore__
+  Menu:           __ignore__
+  VerticalMenu:   __ignore__
+  NavigationMenu: __ignore__
+  TitleBar:       __ignore__
+  WorkingArea:    __ignore__
+  Row:            __ignore__
+  TableHeader:    __ignore__
+
+unified_ext:
+  Icon:           Icon
+  TextLabel:      Text
+  SectionTitle:   Text
+  Button:         Button
+  MenuItem:       MenuItem
+  SubmenuItem:    MenuItem
+  DropdownItem:   MenuItem
+  NavigationItem: NavigationItem
+  InputField:     InputField
+  Menu:           Menu
+  VerticalMenu:   Menu
+  NavigationMenu: Menu
+  TitleBar:       TitleBar
+  WorkingArea:    Container
+  Row:            Container
+  TableHeader:    Container
+
+uicvd16:
+  # Identity mapping — each native class keeps its own label.
+  # Order matches unified_ontology.yaml uicvd16.classes list.
+  Icon:           Icon
+  TextLabel:      TextLabel
+  MenuItem:       MenuItem
+  Row:            Row
+  Button:         Button
+  SubmenuItem:    SubmenuItem
+  NavigationItem: NavigationItem
+  DropdownItem:   DropdownItem
+  InputField:     InputField
+  SectionTitle:   SectionTitle
+  TitleBar:       TitleBar
+  Menu:           Menu
+  WorkingArea:    WorkingArea
+  VerticalMenu:   VerticalMenu
+  NavigationMenu: NavigationMenu
+  TableHeader:    TableHeader

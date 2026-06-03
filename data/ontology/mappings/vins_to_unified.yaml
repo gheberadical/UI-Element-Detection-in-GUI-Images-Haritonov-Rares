@@ -1,0 +1,89 @@
+# VINS native classes (~21) mapped to the unified ontologies.
+#
+# Native class counts (across Android / Rico / iphone / uplabs / Wireframes):
+#   Text 31221, Icon 12066, Image 8734, TextButton 4963, UpperTaskBar 3852,
+#   EditText 2520, PageIndicator 1477, CheckedTextView 892, BackgroundImage 623,
+#   Modal 320, Toolbar 273, Drawer 254, Switch 232, Card 168,
+#   Multi_Tab 29, Bottom_Navigation 20, Spinner 13, Map 3, Remember 2,
+#   Checkbox 2, CheckBox 2
+#
+# Notes:
+#   - VINS calls labelled buttons "TextButton".
+#   - "BackgroundImage" is full-screen and tends to swallow other elements;
+#     ignored to avoid confusing the detector. (Defendable design choice — also
+#     done in some prior work that retrains VINS without it.)
+#   - "Remember" appears 2x and is undocumented; ignored.
+
+unified3:
+  Text:              Text
+  Icon:              Icon
+  TextButton:        Button
+  Image:             __ignore__
+  UpperTaskBar:      __ignore__
+  EditText:          __ignore__
+  PageIndicator:     __ignore__
+  CheckedTextView:   __ignore__
+  BackgroundImage:   __ignore__
+  Modal:             __ignore__
+  Toolbar:           __ignore__
+  Drawer:            __ignore__
+  Switch:            __ignore__
+  Card:              __ignore__
+  Multi_Tab:         __ignore__
+  Bottom_Navigation: __ignore__
+  Spinner:           __ignore__
+  Map:               __ignore__
+  Remember:          __ignore__
+  Checkbox:          __ignore__
+  CheckBox:          __ignore__
+
+unified_ext:
+  Text:              Text
+  Icon:              Icon
+  TextButton:        Button
+  Image:             Image
+  UpperTaskBar:      TitleBar
+  Toolbar:           TitleBar
+  EditText:          InputField
+  PageIndicator:     __ignore__   # no clear analogue across datasets
+  CheckedTextView:   ToggleControl
+  Checkbox:          ToggleControl
+  CheckBox:          ToggleControl
+  Switch:            ToggleControl
+  BackgroundImage:   __ignore__
+  Modal:             Modal
+  Drawer:            Modal
+  Card:              Container
+  Multi_Tab:         NavigationItem
+  Bottom_Navigation: NavigationItem
+  Spinner:           InputField
+  Map:               Image
+  Remember:          __ignore__
+
+vins13:
+  # Identity mapping — each kept native class maps to itself.
+  # Dropped: BackgroundImage (full-screen noise), Multi_Tab (29),
+  # Bottom_Navigation (20), Spinner (13), Map (3), Remember (2),
+  # Checkbox (2), CheckBox (2) — too few annotations to learn.
+  # Order matches unified_ontology.yaml vins13.classes list.
+  Text:              Text
+  Icon:              Icon
+  Image:             Image
+  TextButton:        TextButton
+  UpperTaskBar:      UpperTaskBar
+  EditText:          EditText
+  PageIndicator:     PageIndicator
+  CheckedTextView:   CheckedTextView
+  BackgroundImage:   __ignore__
+  Modal:             Modal
+  Toolbar:           Toolbar
+  Drawer:            Drawer
+  Switch:            Switch
+  Card:              Card
+  Multi_Tab:         __ignore__
+  Bottom_Navigation: __ignore__
+  Spinner:           __ignore__
+  Map:               __ignore__
+  Remember:          __ignore__
+  Checkbox:          __ignore__
+  CheckBox:          __ignore__

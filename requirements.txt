@@ -1,0 +1,44 @@
+# --- Core deep-learning stack ---
+# Install torch + torchvision separately FIRST, picking the right CUDA wheel
+# from https://pytorch.org/get-started/locally/ . Examples (any of these work):
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+# Pip will then pick a torch+torchvision pair that is mutually compatible.
+torch>=2.4
+torchvision>=0.19
+
+# --- Detector libraries ---
+ultralytics>=8.3.0      # YOLOv8/v9/v10/v11/v12 + RT-DETR wrappers
+transformers>=4.44      # DETR / RT-DETR / D-FINE via HuggingFace
+timm>=1.0.7
+accelerate>=0.33
+rfdetr>=0.1             # RF-DETR (Roboflow). Inference is fine locally on 4 GB.
+supervision>=0.22       # Used by RF-DETR for detection output formatting
+
+# --- Data / IO ---
+pyyaml>=6.0
+numpy>=1.26
+pandas>=2.1
+opencv-python-headless>=4.9
+pillow>=10.2
+albumentations>=1.4
+pycocotools>=2.0.7
+lxml>=5.1               # for VINS Pascal-VOC parsing
+
+# --- Metrics, plotting, EDA ---
+matplotlib>=3.8
+seaborn>=0.13
+scikit-learn>=1.4
+tqdm>=4.66
+
+# --- Demo + serving ---
+gradio>=6.0
+
+# --- Setup utilities ---
+gdown>=5.1                  # download results_v2/ from Google Drive (download_weights.py)
+
+# --- Dev tooling (optional, but nice) ---
+ipykernel>=6.29
+jupyterlab>=4.2
+ruff>=0.5

@@ -1,0 +1,100 @@
+# Unified ontology for cross-dataset UI element detection.
+#
+# Taxonomies defined here:
+#   - "unified3":     Text, Button, Icon              (parity with INNOCOMP2025 / KES2025)
+#   - "unified_ext":  Extended ~12-class taxonomy     (this thesis's contribution)
+#   - "gengui13":     GenGUI native 13-class taxonomy (deep-dive chapter)
+#   - "uicvd16":      UICVD native 16-class taxonomy  (all-classes chapter)
+#   - "vins13":       VINS native 13-class taxonomy   (all-classes chapter)
+#
+# Per-dataset native -> unified mappings live in ./mappings/<dataset>_to_unified.yaml.
+# A class can map to "__ignore__", which excludes those boxes from training and from
+# evaluation as ground truth (they are NOT counted as missed detections).
+
+unified3:
+  # Class id is the index in this list.
+  classes:
+    - Text
+    - Button
+    - Icon
+
+unified_ext:
+  # Picked to (a) be present in at least 2 of the 3 datasets, and
+  # (b) be useful as actionable targets for an RPA / accessibility agent.
+  classes:
+    - Text                # static labels, captions, paragraphs
+    - Button              # any clickable element with label text
+    - Icon                # small symbolic clickable / decorative graphic
+    - InputField          # text inputs, search bars, edit fields
+    - Image               # decorative or content images (non-icon)
+    - Container           # generic grouping / card / panel
+    - Menu                # menu containers (top bar, side menu)
+    - MenuItem            # individual menu / submenu / dropdown entries
+    - NavigationItem      # bottom nav, tab bar entries
+    - ToggleControl       # checkboxes, switches, radio buttons
+    - TitleBar            # window/upper task bars
+    - Modal               # dialogs, drawers, overlays
+
+gengui13:
+  # GenGUI's native 13-class taxonomy from Dicu et al. ICAART 2024.
+  # Used only with the GenGUI dataset (other datasets don't map to these).
+  # See the paper's Table 3 for the subclass-level breakdown (25+ subclasses
+  # available, but we stay at the parent-class level for parity with the
+  # published numbers).
+  classes:
+    - Text
+    - Icon
+    - Container
+    - MenuItem
+    - Button
+    - InputField
+    - TableColumn
+    - Row
+    - Menu
+    - WorkingArea
+    - Image
+    - Table
+    - Footer
+
+uicvd16:
+  # UICVD native 16-class taxonomy from Dicu et al. ENASE 2024.
+  # Used only with the UICVD dataset -- identity mapping, no merging.
+  # All 16 classes have sufficient annotations (min: TableHeader 58).
+  classes:
+    - Icon
+    - TextLabel
+    - MenuItem
+    - Row
+    - Button
+    - SubmenuItem
+    - NavigationItem
+    - DropdownItem
+    - InputField
+    - SectionTitle
+    - TitleBar
+    - Menu
+    - WorkingArea
+    - VerticalMenu
+    - NavigationMenu
+    - TableHeader
+
+vins13:
+  # VINS native taxonomy -- 13 classes with sufficient annotations.
+  # Drops BackgroundImage (full-screen noise) and 7 classes with <=29
+  # annotations (Multi_Tab, Bottom_Navigation, Spinner, Map, Remember,
+  # Checkbox, CheckBox) as they cannot be learned meaningfully.
+  # Used only with the VINS dataset -- identity mapping, no merging.
+  classes:
+    - Text
+    - Icon
+    - Image
+    - TextButton
+    - UpperTaskBar
+    - EditText
+    - PageIndicator
+    - CheckedTextView
+    - Modal
+    - Toolbar
+    - Drawer
+    - Switch
+    - Card

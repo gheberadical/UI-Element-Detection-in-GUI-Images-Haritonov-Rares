@@ -1,0 +1,21 @@
+# RT-DETR-L on VINS (3-class). VINS is the largest dataset (3360 train images);
+# fewer epochs are enough. Run on Kaggle T4 -- still ~6-8 hours total.
+# If you hit Kaggle's 12 h notebook limit, re-launch with `resume: true` and
+# Ultralytics will pick up from results/<name>/weights/last.pt.
+
+name: rtdetr_l_vins_unified3
+model: rtdetr_l
+dataset: vins
+taxonomy: unified3
+
+epochs: 60
+batch: 8
+imgsz: 640
+lr0: 0.0001
+seed: 42
+device: "0"
+workers: 4
+amp: true
+extra:
+  patience: 15      # large dataset -> faster plateau detection
+  cos_lr: true

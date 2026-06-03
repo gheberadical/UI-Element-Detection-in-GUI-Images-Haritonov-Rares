@@ -1,0 +1,25 @@
+# Faster R-CNN R50-FPN-v2 on UICVD (3-class).
+# Lab-parity baseline replicating AIAI2024.
+# 4 GB VRAM: batch=2 with min_size=480/max_size=800 fits with AMP.
+
+name: fasterrcnn_r50_v2_uicvd_unified3
+model: fasterrcnn_r50_v2
+dataset: uicvd
+taxonomy: unified3
+
+epochs: 40                # F-RCNN converges much faster than YOLO; 40 is plenty
+batch: 2                  # do not raise without more VRAM
+imgsz: 640                # informational only -- F-RCNN uses min_size/max_size below
+lr0: 0.0001               # AdamW; lower than YOLO's SGD lr0
+seed: 42
+device: "0"
+workers: 2
+amp: false                # GTX 1650 Ti (Turing, CC 7.5) gives NaN losses with AMP
+                          # in F-RCNN's RPN regression. Same reason Ultralytics
+                          # auto-disables AMP on this card.
+extra:
+  min_size: 480
+  max_size: 800
+  accumulate: 8           # effective batch = 2 * 8 = 16
+  warmup_iters: 200
+  weight_decay: 0.0005

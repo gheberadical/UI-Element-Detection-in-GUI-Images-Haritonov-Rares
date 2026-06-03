@@ -1,0 +1,19 @@
+name: fasterrcnn_r50_v2_gengui_unified3
+model: fasterrcnn_r50_v2
+dataset: gengui
+taxonomy: unified3
+
+epochs: 40
+batch: 2
+imgsz: 640
+lr0: 0.0001
+seed: 42
+device: "0"
+workers: 2
+amp: false                # see notes in fasterrcnn_r50_v2_uicvd_unified3.yaml
+extra:
+  min_size: 480
+  max_size: 800
+  accumulate: 8
+  warmup_iters: 300
+  weight_decay: 0.0005

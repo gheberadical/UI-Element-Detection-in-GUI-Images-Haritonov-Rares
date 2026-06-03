@@ -1,0 +1,19 @@
+name: yolov8n_gengui_unified3
+model: yolov8n
+dataset: gengui
+taxonomy: unified3
+
+epochs: 150
+batch: 8           # 4 GB VRAM: batch=16 spills into shared mem and crashes cuBLAS
+imgsz: 640
+lr0: 0.01
+seed: 42
+device: "0"
+workers: 2         # also reduce dataloader workers; helps stability on Windows
+amp: true
+extra:
+  patience: 30
+  mosaic: 1.0
+  hsv_h: 0.0
+  hsv_s: 0.2
+  hsv_v: 0.3

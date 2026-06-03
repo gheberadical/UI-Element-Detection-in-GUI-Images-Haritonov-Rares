@@ -1,0 +1,29 @@
+# Run on Kaggle T4 (16 GB).
+# RF-DETR (Roboflow, ICLR 2026) -- DINOv2-backed transformer.
+# Before training: python scripts/to_rfdetr_layout.py --dataset uicvd --taxonomy uicvd16
+
+name: rfdetr_m_uicvd_uicvd16
+model: rfdetr_m
+dataset: uicvd
+taxonomy: uicvd16
+results_dir: results_v2
+
+epochs: 80
+batch: 2
+imgsz: 640
+lr0: 0.0001
+seed: 42
+device: "0"
+workers: 4
+amp: true
+extra:
+  grad_accum_steps: 16
+  resolution: 576
+  weight_decay: 0.0001
+  early_stopping: true
+  early_stopping_patience: 15
+  use_ema: true
+
+wandb_project: uidet-thesis
+wandb_entity: null
+wandb_tags: []

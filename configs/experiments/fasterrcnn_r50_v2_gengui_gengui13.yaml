@@ -1,0 +1,29 @@
+# Faster R-CNN R50-v2 on GenGUI's native 13-class taxonomy.
+# Trained locally on the 1650 Ti. ~50-60 min with early-stop.
+
+name: fasterrcnn_r50_v2_gengui_gengui13
+model: fasterrcnn_r50_v2
+dataset: gengui
+taxonomy: gengui13
+results_dir: results_v2
+
+epochs: 50              # F-RCNN converges quickly; early stop usually kicks in around epoch 10-20
+batch: 2
+imgsz: 640
+lr0: 0.0001
+seed: 42
+device: "0"
+workers: 2
+amp: false              # GTX 1650 Ti gives NaN losses with AMP in F-RCNN
+extra:
+  min_size: 480
+  max_size: 800
+  accumulate: 8         # effective batch = 16
+  warmup_iters: 400
+  weight_decay: 0.0005
+  patience: 8
+  min_epochs: 5
+
+wandb_project: uidet-thesis
+wandb_entity: null
+wandb_tags: []

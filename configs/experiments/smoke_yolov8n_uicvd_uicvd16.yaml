@@ -1,0 +1,30 @@
+# SMOKE TEST — run this to verify the full pipeline works end-to-end.
+# 2 epochs, UICVD (121 images), uicvd16 (16 classes).
+# Takes ~2 min on CPU, ~30 sec on a GPU. Not a real training run.
+#
+# Usage:
+#   cd Implementation
+#   python -m uidet.train --config configs/experiments/smoke_yolov8n_uicvd_uicvd16.yaml
+
+name: smoke_yolov8n_uicvd_uicvd16
+model: yolov8n
+dataset: uicvd
+taxonomy: uicvd16
+results_dir: results_v2
+
+epochs: 2
+batch: 8
+imgsz: 640
+lr0: 0.01
+seed: 42
+device: "0"
+workers: 2
+amp: true
+extra:
+  patience: 999      # disable early stopping for smoke test
+  mosaic: 0.0        # skip augmentation for speed
+
+# WandB disabled for smoke test — add these to enable:
+# wandb_project: uidet-thesis
+# wandb_entity: null
+# wandb_tags: [smoke]

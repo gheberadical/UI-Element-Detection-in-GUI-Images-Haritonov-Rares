@@ -1,0 +1,23 @@
+# Run on Kaggle T4 (16 GB).
+
+name: rtdetr_l_vins_vins13
+model: rtdetr_l
+dataset: vins
+taxonomy: vins13
+results_dir: results_v2
+
+epochs: 60               # VINS is large; 60 epochs ~ 20h on T4, patience should trigger ~30-40
+batch: 8
+imgsz: 640
+lr0: 0.0001
+seed: 42
+device: "0"
+workers: 4
+amp: true
+extra:
+  patience: 15           # reduced from 30 — stops sooner on plateau, targets ~25-35 epochs total
+  cos_lr: true
+
+wandb_project: uidet-thesis
+wandb_entity: null
+wandb_tags: []

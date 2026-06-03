@@ -1,0 +1,23 @@
+# Run on Kaggle T4 (16 GB).
+
+name: rtdetr_l_uicvd_uicvd16
+model: rtdetr_l
+dataset: uicvd
+taxonomy: uicvd16
+results_dir: results_v2
+
+epochs: 120
+batch: 8
+imgsz: 640
+lr0: 0.0001
+seed: 42
+device: "0"
+workers: 4
+amp: true
+extra:
+  patience: 30
+  cos_lr: true
+
+wandb_project: uidet-thesis
+wandb_entity: null
+wandb_tags: []

@@ -1,0 +1,19 @@
+name: yolov8n_uicvd_unified_ext
+model: yolov8n
+dataset: uicvd
+taxonomy: unified_ext        # 12-class extended taxonomy (the novel one)
+
+epochs: 200                  # rare classes need more iterations
+batch: 16
+imgsz: 640
+lr0: 0.01
+seed: 42
+device: "0"
+workers: 4
+amp: true
+extra:
+  patience: 50               # don't kill it too early; rare classes plateau slowly
+  mosaic: 1.0
+  hsv_h: 0.0
+  hsv_s: 0.2
+  hsv_v: 0.3

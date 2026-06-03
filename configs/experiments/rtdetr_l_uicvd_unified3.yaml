@@ -1,0 +1,23 @@
+# RT-DETR-L on UICVD (3-class). Headline novelty: first transformer detector
+# on this lab's datasets.
+#
+# REQUIREMENTS: needs ~10-12 GB VRAM at batch=8 imgsz=640 with AMP. Will OOM
+# on the GTX 1650 Ti (4 GB). Run on Kaggle T4 (16 GB, free) -- see
+# notebooks/02_kaggle_train_rtdetr.ipynb for the step-by-step.
+
+name: rtdetr_l_uicvd_unified3
+model: rtdetr_l
+dataset: uicvd
+taxonomy: unified3
+
+epochs: 100
+batch: 8
+imgsz: 640
+lr0: 0.0001        # transformer-style; 100x lower than YOLO's SGD lr0=0.01
+seed: 42
+device: "0"
+workers: 4
+amp: true
+extra:
+  patience: 20
+  cos_lr: true     # cosine LR schedule helps DETR-family training stability

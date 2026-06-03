@@ -1,0 +1,53 @@
+# GenGUI native classes (13) mapped to the unified ontologies.
+#
+# Native class counts:
+#   Text 8927, Icon 4566, Container 1370, MenuItem 1227, Button 1036,
+#   InputField 771, TableColumn 754, Row 718, Menu 309, WorkingArea 250,
+#   Image 228, Table 168, Footer 160
+
+unified3:
+  Text:        Text
+  Icon:        Icon
+  Button:      Button
+  Container:   __ignore__
+  MenuItem:    __ignore__
+  InputField:  __ignore__
+  TableColumn: __ignore__
+  Row:         __ignore__
+  Menu:        __ignore__
+  WorkingArea: __ignore__
+  Image:       __ignore__
+  Table:       __ignore__
+  Footer:      __ignore__
+
+unified_ext:
+  Text:        Text
+  Icon:        Icon
+  Button:      Button
+  Container:   Container
+  MenuItem:    MenuItem
+  InputField:  InputField
+  TableColumn: Container       # column groupings are layout containers
+  Row:         Container
+  Menu:        Menu
+  WorkingArea: Container
+  Image:       Image
+  Table:       Container
+  Footer:      Container
+
+gengui13:
+  # GenGUI-only deep-dive taxonomy. Identity mapping: each native class
+  # keeps its own label, no merging, no ignores. 13 classes, all populated.
+  Text:        Text
+  Icon:        Icon
+  Button:      Button
+  Container:   Container
+  MenuItem:    MenuItem
+  InputField:  InputField
+  TableColumn: TableColumn
+  Row:         Row
+  Menu:        Menu
+  WorkingArea: WorkingArea
+  Image:       Image
+  Table:       Table
+  Footer:      Footer

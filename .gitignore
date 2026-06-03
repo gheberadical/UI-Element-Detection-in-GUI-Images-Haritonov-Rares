@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Tools
+.ruff_cache/
+
+# Data — generated, not committed (regenerate with scripts/prepare_all.sh)
+data/prepared/
+data/prepared_rfdetr/
+data/cache/
+
+# Raw datasets — download manually (see README)
+datasets/
+kaggle_uploads/
+*.zip
+
+# Model weights and results — hosted on Google Drive (see README)
+results_v2/
+results/
+runs/
+
+# W&B local sync cache
+wandb/
+mlruns/
+
+# Demo temp file
+demo/_last_pred.png
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Logs
+*.log
